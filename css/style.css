@@ -66,6 +66,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
@@ -227,7 +228,6 @@ section {
     line-height: 1;
     margin-bottom: clamp(20px, 3.33vw, 40px);
     letter-spacing: -0.02em;
-    white-space: nowrap;
     background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -235,6 +235,7 @@ section {
     text-fill-color: transparent;
     width: 100%;
     display: inline-block;
+    overflow-wrap: break-word;
 }
 
 .main-description {
@@ -601,11 +602,11 @@ section {
 
 .stages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: clamp(10px, 1.67vw, 20px);
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 768px) {
     .stages-grid {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -821,6 +822,15 @@ section {
 
 /* Только для очень маленьких экранов - адаптируем вертикальные картинки */
 @media (max-width: 768px) {
+    /* Предотвращаем горизонтальный скролл */
+    * {
+        max-width: 100%;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
     /* Вертикальные картинки перестраиваются в 2 колонки */
     .grid-layout-1 picture:nth-child(2),
     .grid-layout-1 picture:nth-child(3),
